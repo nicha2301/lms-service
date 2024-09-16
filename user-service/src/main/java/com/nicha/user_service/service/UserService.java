@@ -1,18 +1,18 @@
 package com.nicha.user_service.service;
 
 import com.nicha.user_service.entity.User;
-import com.nicha.user_service.enums.ErrorCode;
-import com.nicha.user_service.exception.AppException;
 import com.nicha.user_service.repository.UserRepository;
 import com.nicha.user_service.util.JwtUtil;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.NonFinal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,17 +20,16 @@ import java.util.Optional;
 public class UserService {
     UserRepository userRepository;
     JwtUtil jwtUtil;
-
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        return userRepository.findByUsername(username);
+
     }
 
     public User saveUser(User user) {
-        if (findByUsername(user.getUsername()) != null)
-            throw new AppException(ErrorCode.USER_EXISTED);
+        if (userRepository.findByUsername(user.getUsername()) != null)
+            return null;
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -41,10 +40,15 @@ public class UserService {
         User user = findByUsername(username);
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new AppException(ErrorCode.INVALID_PASSWORD);
+            return null;
         }
 
         return jwtUtil.generateToken(user.getUsername());
+    }
 
+    public List<User> getAllUsers() {
+        List<User> users = userRepository.findAll();
+
+        return users;
     }
 }

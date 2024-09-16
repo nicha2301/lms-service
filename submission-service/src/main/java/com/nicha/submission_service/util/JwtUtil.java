@@ -1,4 +1,4 @@
-package com.nicha.user_service.util;
+package com.nicha.submission_service.util;
 
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;

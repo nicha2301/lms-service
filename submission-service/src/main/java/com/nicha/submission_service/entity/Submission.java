@@ -17,9 +17,7 @@ public class Submission {
     private String id;
     private String studentId;
     private String assignmentId;
-    private String contentUrl; // URL của bài nộp
+    private String contentUrl;
     private String submissionDate;
-
-    // Getters và Setters
 }
 

@@ -1,14 +1,10 @@
 package com.nicha.submission_service.service;
 
 import com.nicha.submission_service.entity.Submission;
-import com.nicha.submission_service.entity.User;
 import com.nicha.submission_service.repository.SubmissionRepository;
-import com.nicha.submission_service.repository.UserRepository;
-import com.nicha.submission_service.util.JwtUtil;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class SubmissionService {
-
-     SubmissionRepository submissionRepository;
+    SubmissionRepository submissionRepository;
 
     public List<Submission> getAllSubmissions() {
         return submissionRepository.findAll();

@@ -1,4 +1,4 @@
-package com.nicha.user_service.enums;
+package com.nicha.submission_service.enums;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

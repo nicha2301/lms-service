@@ -2,14 +2,10 @@ package com.nicha.submission_service.controller;
 
 
 import com.nicha.submission_service.entity.Submission;
-import com.nicha.submission_service.entity.User;
 import com.nicha.submission_service.service.SubmissionService;
-import com.nicha.submission_service.service.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/submissions")
 public class SubmissionController {
 
-     SubmissionService submissionService;
+    SubmissionService submissionService;
 
     @GetMapping
     public List<Submission> getAllSubmissions() {

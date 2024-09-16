@@ -15,28 +15,33 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@RequestMapping("/content")
+@RequestMapping("/api/contents")
 public class ContentController {
     ContentService contentService;
 
-    @PostMapping("/upload")
-    public ResponseEntity<?> uploadContent(@RequestParam("file") MultipartFile file,
-                                           @RequestParam("courseId") Long courseId) throws IOException {
-        Content content = contentService.uploadFile(file, courseId);
-        return ResponseEntity.ok(content);
+    @GetMapping
+    public List<Content> getAllContents() {
+        return contentService.getAllContents();
     }
 
-    @GetMapping("/download/{fileName}")
-    public ResponseEntity<Resource> downloadContent(@PathVariable String fileName) throws IOException {
-        Resource resource = contentService.downloadFile(fileName);
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
-                .body(resource);
+    @GetMapping("/{id}")
+    public Content getContentById(@PathVariable String id) {
+        return contentService.getContentById(id);
+    }
+
+    @PostMapping
+    public Content createContent(@RequestBody Content content) {
+        return contentService.createContent(content);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteContent(@PathVariable String id) {
+        contentService.deleteContent(id);
     }
 }

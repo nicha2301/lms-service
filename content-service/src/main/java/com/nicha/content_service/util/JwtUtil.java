@@ -1,4 +1,4 @@
-package com.nicha.course_service.util;
+package com.nicha.content_service.util;
 
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;

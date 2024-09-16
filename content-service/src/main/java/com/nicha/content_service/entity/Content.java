@@ -1,26 +1,25 @@
 package com.nicha.content_service.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "courses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
+@Document(collection = "contents")
 public class Content {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long courseId;
-    private String fileName;
-    private String fileUrl;
+    private String id;
+    private String title;
+    private String description;
+    private String url;
     private String fileType;
-    private LocalDateTime uploadTime;
+    private long fileSize;
 }
 

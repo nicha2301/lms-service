@@ -1,11 +1,11 @@
 package com.nicha.content_service.repository;
 
 import com.nicha.content_service.entity.Content;
-import com.nicha.content_service.entity.Course;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface ContentRepository extends JpaRepository<Content, Long> {
+public interface ContentRepository extends MongoRepository<Content, String> {
+
     List<Content> findByCourseId(Long courseId);
 }

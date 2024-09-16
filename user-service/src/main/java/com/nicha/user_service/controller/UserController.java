@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) throws Exception {
-        return new ResponseEntity<>(userService.login(username, password), HttpStatus.OK);
+    public ResponseEntity<String> login(@RequestBody User user) throws Exception {
+        return new ResponseEntity<>(userService.login(user.getUsername(), user.getPassword()), HttpStatus.OK);
     }
 }

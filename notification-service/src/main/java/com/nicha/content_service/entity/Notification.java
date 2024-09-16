@@ -2,11 +2,8 @@ package com.nicha.content_service.entity;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +16,5 @@ public class Notification implements Serializable {
     private String recipient;
     private String createdAt;
 
-    // Constructors, Getters, Setters
 }
 

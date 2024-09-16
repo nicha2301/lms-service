@@ -11,7 +11,7 @@ import java.util.UUID;
 @Service
 public class NotificationService {
 
-     RedisTemplate<String, Notification> redisTemplate;
+    RedisTemplate<String, Notification> redisTemplate;
 
     private static final String NOTIFICATION_PREFIX = "NOTIFICATION_";
 
